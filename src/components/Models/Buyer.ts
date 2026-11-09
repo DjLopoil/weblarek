@@ -1,37 +1,47 @@
-import type { IBuyer } from "../../types";
+import type { IBuyer, TErrors } from "../../types";
 
 export class Buyer {
-  private data: Partial<IBuyer> = {};
+  private data: IBuyer = {
+    payment: null,
+    email: "",
+    phone: "",
+    address: "",
+  };
 
   setData(data: Partial<IBuyer>): void {
     this.data = { ...this.data, ...data };
   }
 
-  //getData() возвращает копию объекта.
-  getData(): Partial<IBuyer> {
-    return { ...this.data };
+  getData(): IBuyer {
+    return this.data;
   }
 
   clear(): void {
-    this.data = {};
+    this.data = {
+      payment: null,
+      email: "",
+      phone: "",
+      address: "",
+    };
   }
 
-  //validate() возвращает ошибки только для незаполненных полей.
-  validate(
-    fields: (keyof IBuyer)[] = ["payment", "address", "email", "phone"],
-  ): Partial<Record<keyof IBuyer, string>> {
-    const errors: Partial<Record<keyof IBuyer, string>> = {};
-    const messages: Record<keyof IBuyer, string> = {
-      payment: "Не выбран способ оплаты",
-      address: "Укажите адрес",
-      email: "Укажите email",
-      phone: "Укажите телефон",
-    };
+  validate(): TErrors {
+    const errors: TErrors = {};
 
-    for (const field of fields) {
-      if (!this.data[field]) {
-        errors[field] = messages[field];
-      }
+    if (!this.data.payment) {
+      errors.payment = "Необходимо выбрать способ оплаты";
+    }
+
+    if (!this.data.email.trim()) {
+      errors.email = "Необходимо указать email";
+    }
+
+    if (!this.data.phone.trim()) {
+      errors.phone = "Необходимо указать телефон";
+    }
+
+    if (!this.data.address.trim()) {
+      errors.address = "Необходимо указать адрес";
     }
 
     return errors;

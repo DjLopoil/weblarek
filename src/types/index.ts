@@ -24,11 +24,13 @@ export interface IProduct {
 
 //IBuyer описывает данные покупателя.
 export interface IBuyer {
-  payment: TPayment;
+  payment: TPayment | null;
   email: string;
   phone: string;
   address: string;
 }
+
+export type TErrors = Partial<Record<keyof IBuyer, string>>;
 
 //IOrder — отправляемый заказ.
 export interface IOrder extends IBuyer {

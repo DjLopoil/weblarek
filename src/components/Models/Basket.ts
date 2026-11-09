@@ -7,11 +7,8 @@ export class Basket {
     return this.items;
   }
 
-  //addItem проверяет товар по id, чтобы один и тот же товар нельзя было добавить повторно.
   addItem(item: IProduct): void {
-    if (!this.hasItem(item.id)) {
-      this.items.push(item);
-    }
+    this.items.push(item);
   }
 
   //removeItem принимает именно id и удаляет соответствующий товар.

@@ -23,7 +23,6 @@ console.log("Поиск товара по id:", products.getItem(firstProduct.id
 const basket = new Basket();
 basket.addItem(firstProduct);
 basket.addItem(secondProduct);
-basket.addItem(firstProduct);
 basket.addItem(apiProducts.items[2]);
 console.log("Товары в корзине:", basket.getItems());
 console.log("Количество товаров:", basket.getCount());
@@ -37,7 +36,7 @@ console.log("Корзина после очистки:", basket.getItems());
 const buyer = new Buyer();
 console.log("Ошибки пустых данных покупателя:", buyer.validate());
 buyer.setData({ payment: "card", address: "Москва" });
-console.log("Ошибки первого шага:", buyer.validate(["payment", "address"]));
+console.log("Ошибки после заполнения оплаты и адреса:", buyer.validate());
 buyer.setData({ email: "buyer@example.com", phone: "+70000000000" });
 console.log("Данные покупателя:", buyer.getData());
 console.log("Ошибки заполненных данных:", buyer.validate());
