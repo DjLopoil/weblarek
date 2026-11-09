@@ -30,10 +30,9 @@ export interface IBuyer {
   address: string;
 }
 
-//IOrder объединяет данные покупателя с заказом.
+//IOrder — отправляемый заказ.
 export interface IOrder extends IBuyer {
   items: string[];
-  total: number;
 }
 
 //IProductListResponse описывает ответ сервера со списком товаров.
@@ -42,7 +41,7 @@ export interface IProductListResponse {
   items: IProduct[];
 }
 
-//IOrderResponse описывает подтверждение заказа от сервера.
+//IOrderResponse — ответ сервера с id заказа и total стоимостью.
 export interface IOrderResponse {
   id: string;
   total: number;
