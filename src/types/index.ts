@@ -33,6 +33,7 @@ export interface IBuyer {
 //IOrder — отправляемый заказ.
 export interface IOrder extends IBuyer {
   items: string[];
+  total: number;
 }
 
 //IProductListResponse описывает ответ сервера со списком товаров.
